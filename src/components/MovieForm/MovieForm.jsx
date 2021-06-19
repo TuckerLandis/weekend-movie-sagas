@@ -10,13 +10,13 @@ import FormHelperText from '@material-ui/core/FormHelperText';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import NativeSelect from '@material-ui/core/NativeSelect';
+import {HashRouter as Router, Route, useHistory} from 'react-router-dom';
 
 import './movieform.css'
 
-
-
 function MovieForm () {
     const dispatch = useDispatch()
+    const history = useHistory()
     const genres = useSelector(store => store.genres )
     const [title, setTitle] = useState('')
     const [poster, setPoster] = useState('')
@@ -39,6 +39,9 @@ function MovieForm () {
     const handleChangeGenre = (event) => {
         setGenre(event.target.value)
     }
+    const handleCancel = () => {
+        history.push('/')
+    }
     const addMovie = (event) => {
         event.preventDefault
         dispatch({
@@ -56,7 +59,6 @@ function MovieForm () {
         setGenre('')
     }
 
-    console.log(genres);
     return (<div className="form-container">
         <form onSubmit={addMovie}>
             <TextField
@@ -91,26 +93,23 @@ function MovieForm () {
           onChange={handleChangeGenre}
           
         >
-
+            <option aria-label="None" value="" />
             {
                 genres.map(
                     item => {
                         return (
-                            console.log(item)
+                            <option key={item.id} value={item.id}>{item.name}</option>
                         )
                     }
                 )
-            
             }
-          {/* <option aria-label="None" value="" />
-          <option value={'1'}>Genre1</option>
-          <option value={'2'}>Genre2</option>
-          <option value={'3'}>Genre3</option> */}
         </NativeSelect>
-        
       </FormControl>
     <div>
-    <Button variant="outlined" color="primary" type="submit">
+    <Button variant="contained" color="secondary" onClick={handleCancel}>
+         Cancel
+    </Button>
+    <Button variant="contained" color="primary" type="submit">
          Save
     </Button>
     </div>
@@ -122,16 +121,3 @@ function MovieForm () {
 
 export default MovieForm
 
-
-
-// This should show:
-
-// - an input field (for the movie title)
-// - an input field (for the movie poster image url))
-// - a textarea (for the movie description)
-// - a dropdown (for the genres)
-
-// The Add Movie page should have the buttons:
-
-// - `Cancel` button, which should bring the user to the Home/List Page
-// - `Save` button, which should save these inputs in the database and bring the user to the Home/List Page (which now has the new movie)
