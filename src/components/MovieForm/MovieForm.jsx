@@ -43,6 +43,10 @@ function MovieForm () {
                 genre: genre
             }
         })
+        setTitle('')
+        setPoster('')
+        setDescription('')
+        setGenre('')
     }
 
     return (<div>
