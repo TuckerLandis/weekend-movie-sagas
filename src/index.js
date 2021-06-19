@@ -16,6 +16,7 @@ function* rootSaga() {
     yield takeEvery('FETCH_MOVIES', fetchAllMovies);
     yield takeEvery('ADD_MOVIE', addMovie)
     yield takeEvery('FETCH_GENRES', fetchGenres)
+    yield takeEvery('SELECT_GENRES', selectGenres)
 }
 
 function* fetchAllMovies() {
@@ -47,6 +48,17 @@ function* addMovie (action) {
         yield axios.post(`/api/movie`, newMovie)
     } catch (error) {
         console.error('Error adding newMovie:', error, newMovie );
+        
+    }
+}
+
+function* selectGenres (action) {
+    let id = action.payload
+    try {
+      const genreReturn = yield axios.get(`/api/genre/select/${id}`)
+      yield put ({ type: 'SET_SELECTED_GENRE', payload: genreReturn})
+    } catch (error) {
+        console.log('error getting selected genre', error);
         
     }
 }
@@ -85,6 +97,14 @@ const selectedMovie = (state = [], action) => {
             return state;
     }
 }
+const selectedGenres = (state = [], action) => {
+    switch (action.type) {
+        case 'SET_SELECTED_GENRE':
+            return action.payload;
+            default: 
+            return state;
+    }
+}
 
 
 
@@ -94,6 +114,7 @@ const storeInstance = createStore(
         movies,
         genres,
         selectedMovie,
+        selectedGenres
     }),
     // Add sagaMiddleware to our store
     applyMiddleware(sagaMiddleware, logger),

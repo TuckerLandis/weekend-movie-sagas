@@ -1,7 +1,17 @@
+import { useSelector } from "react-redux"
+
 function Details () {
+    const movie = useSelector(store => store.selectedMovie);
 
     return (
-        <p>details</p>
+        <div>
+            <h2>{movie.title}</h2>
+            <img src={movie.poster} alt={movie.title} />
+            <p>{movie.description}</p>
+            <ul>
+           {/* genres here */}
+            </ul>
+        </div>
     )
 }
 
