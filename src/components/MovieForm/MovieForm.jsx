@@ -3,22 +3,29 @@ import Button from '@material-ui/core/Button';
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import { useState } from 'react';
-import { useDispatch } from 'react-redux';
-
+import { useDispatch, useSelector } from 'react-redux';
+import React, { useEffect } from 'react';
 import InputLabel from '@material-ui/core/InputLabel';
 import FormHelperText from '@material-ui/core/FormHelperText';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import NativeSelect from '@material-ui/core/NativeSelect';
 
+import './movieform.css'
+
 
 
 function MovieForm () {
     const dispatch = useDispatch()
+    const genres = useSelector(store => store.genres )
     const [title, setTitle] = useState('')
     const [poster, setPoster] = useState('')
     const [description, setDescription] = useState('')
     const [genre, setGenre] = useState('')
+
+    useEffect(() => {
+        dispatch({ type: 'FETCH_GENRES' });
+    }, []);
 
     const handleChangeTitle = (event) => {
         setTitle(event.target.value)
@@ -49,7 +56,8 @@ function MovieForm () {
         setGenre('')
     }
 
-    return (<div>
+    console.log(genres);
+    return (<div className="form-container">
         <form onSubmit={addMovie}>
             <TextField
           id="outlined-multiline-flexible"
@@ -66,8 +74,10 @@ function MovieForm () {
           variant="outlined"
         />
         <div>
-            <TextareaAutosize
-      rowsMax={4}
+            <TextField
+      rows={4}
+      rowsMax={60}
+      multiline
       aria-label="maximum height"
       placeholder="Description..."
       value={description}
@@ -82,11 +92,20 @@ function MovieForm () {
           
         >
 
-            {/* GENRE MAP REDUCER = 'genres'*/}
-          <option aria-label="None" value="" />
+            {
+                genres.map(
+                    item => {
+                        return (
+                            console.log(item)
+                        )
+                    }
+                )
+            
+            }
+          {/* <option aria-label="None" value="" />
           <option value={'1'}>Genre1</option>
           <option value={'2'}>Genre2</option>
-          <option value={'3'}>Genre3</option>
+          <option value={'3'}>Genre3</option> */}
         </NativeSelect>
         
       </FormControl>
