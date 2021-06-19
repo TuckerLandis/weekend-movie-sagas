@@ -3,45 +3,92 @@ import Button from '@material-ui/core/Button';
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+
+import InputLabel from '@material-ui/core/InputLabel';
+import FormHelperText from '@material-ui/core/FormHelperText';
+import FormControl from '@material-ui/core/FormControl';
+import Select from '@material-ui/core/Select';
+import NativeSelect from '@material-ui/core/NativeSelect';
 
 
 
 function MovieForm () {
+    const dispatch = useDispatch()
     const [title, setTitle] = useState('')
-    const [url, setUrl] = useState('')
+    const [poster, setPoster] = useState('')
+    const [description, setDescription] = useState('')
+    const [genre, setGenre] = useState('')
 
-    const handleChange = () => {
-        console.log(evt.target.value);
+    const handleChangeTitle = (event) => {
+        setTitle(event.target.value)
+    }
+    const handleChangePoster = (event) => {
+        setPoster(event.target.value)
+    }
+    const handleChangeDescription = (event) => {
+        setDescription(event.target.value)
+    }
+    const handleChangeGenre = (event) => {
+        setGenre(event.target.value)
+    }
+    const addMovie = (event) => {
+        event.preventDefault
+        dispatch({
+            type: 'ADD_MOVIE',
+            payload: {
+                title: title,
+                poster: poster,
+                description: description,
+                genre: genre
+            }
+        })
     }
 
     return (<div>
-        <form>
+        <form onSubmit={addMovie}>
             <TextField
           id="outlined-multiline-flexible"
           label="Title"
           value={title}
-          onChange={handleChange}
+          onChange={handleChangeTitle}
           variant="outlined"
         />
             <TextField
           id="outlined-multiline-flexible"
-          label="Poster URL"
-          value={url}
-          onChange={handleChange}
+          label="Poster"
+          value={poster}
+          onChange={handleChangePoster}
           variant="outlined"
         />
         <div>
             <TextareaAutosize
       rowsMax={4}
       aria-label="maximum height"
-      placeholder="Maximum 4 rows"
-      defaultValue="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
-          ut labore et dolore magna aliqua."
+      placeholder="Description..."
+      value={description}
+      onChange={handleChangeDescription}
     />
     </div>
+    <FormControl className="">
+        <InputLabel htmlFor="Set-Genre">Genre</InputLabel>
+        <NativeSelect
+          value={genre}
+          onChange={handleChangeGenre}
+          
+        >
+
+            {/* GENRE MAP */}
+          <option aria-label="None" value="" />
+          <option value={'genre1'}>Genre1</option>
+          <option value={'genre2'}>Genre2</option>
+          <option value={'genre3'}>Genre3</option>
+        </NativeSelect>
+        
+      </FormControl>
     <div>
-    <Button variant="outlined" color="primary">
-         Primary
+    <Button variant="outlined" color="primary" type="submit">
+         Save
     </Button>
     </div>
 
@@ -57,7 +104,7 @@ export default MovieForm
 // This should show:
 
 // - an input field (for the movie title)
-// - an input field (for the movie poster image URL))
+// - an input field (for the movie poster image url))
 // - a textarea (for the movie description)
 // - a dropdown (for the genres)
 

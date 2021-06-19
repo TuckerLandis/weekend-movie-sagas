@@ -6,7 +6,7 @@ function Nav () {
     return (
         <div className="nav">
             <p className="nav-link"> <Link to="/form"> Add Movie </Link> </p> 
-            <p className="nav-link"> <Link to="/favorite"> 🖤 Favorites </Link> </p> 
+            <p className="nav-link"> <Link to="/"> Home </Link> </p> 
         </div>
 
     )

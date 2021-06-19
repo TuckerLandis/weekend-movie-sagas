@@ -63,12 +63,10 @@ const selectedMovie = (state = [], action) => {
             return []
         default: 
             return state;
-
     }
-
-
-    // 'CLEAR_SELECTION'
 }
+
+
 
 // Create one store that all components can use
 const storeInstance = createStore(
