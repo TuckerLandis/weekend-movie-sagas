@@ -3,13 +3,15 @@ import './App.css';
 import MovieList from '../MovieList/MovieList'
 import MovieForm from '../MovieForm/MovieForm';
 import Details from '../Details/Details'
-import NavBar from '../NavBar/NavBar'
+import Nav from '../Nav/Nav'
 
 function App() {
   return (
     <div className="App">
       <h1>The Movies Saga!</h1>
-      <Router>        
+      
+      <Router>      
+      <Nav />  
         <Route path="/" exact>
           <MovieList />
         </Route>
@@ -20,7 +22,7 @@ function App() {
           <MovieForm />
         </Route>
 
-      <NavBar />
+      
       </Router>
     </div>
   );
