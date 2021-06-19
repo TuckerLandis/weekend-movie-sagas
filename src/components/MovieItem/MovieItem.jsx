@@ -1,5 +1,5 @@
-function MovieItem () {
-
+function MovieItem ({movie}) {
+    
 
     // abilities to switch to details view. this will be a route to the details page that shows the, uh, details. 
 
@@ -10,7 +10,10 @@ function MovieItem () {
     // 
 
     return (
-        <p>MovieItem</p>
+        <div key={movie.id} >
+        <h3>{movie.title}</h3>
+        <img src={movie.poster} alt={movie.title}/>
+    </div>
     )
 }
 
