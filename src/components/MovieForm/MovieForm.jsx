@@ -40,7 +40,7 @@ function MovieForm () {
                 title: title,
                 poster: poster,
                 description: description,
-                genre: genre
+                genre_id: genre
             }
         })
         setTitle('')
@@ -82,11 +82,11 @@ function MovieForm () {
           
         >
 
-            {/* GENRE MAP */}
+            {/* GENRE MAP REDUCER = 'genres'*/}
           <option aria-label="None" value="" />
-          <option value={'genre1'}>Genre1</option>
-          <option value={'genre2'}>Genre2</option>
-          <option value={'genre3'}>Genre3</option>
+          <option value={'1'}>Genre1</option>
+          <option value={'2'}>Genre2</option>
+          <option value={'3'}>Genre3</option>
         </NativeSelect>
         
       </FormControl>
