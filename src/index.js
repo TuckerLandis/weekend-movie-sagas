@@ -14,6 +14,8 @@ import axios from 'axios';
 // Create the rootSaga generator function
 function* rootSaga() {
     yield takeEvery('FETCH_MOVIES', fetchAllMovies);
+    yield takeEvery('ADD_MOVIE', addMovie)
+    yield takeEvery('FETCH_GENRES', fetchGenres)
 }
 
 function* fetchAllMovies() {
@@ -22,11 +24,31 @@ function* fetchAllMovies() {
         const movies = yield axios.get('/api/movie');
         console.log('get all:', movies.data);
         yield put({ type: 'SET_MOVIES', payload: movies.data });
-
     } catch {
         console.log('get all error');
+    } 
+}
+
+function* fetchGenres () {
+    //gets all genres from db and sends to reducer
+    try{
+        const genres = yield axios.get('/api/genre');
+        console.log('genres from DB:', genres);
+        yield put ({type:'SET_GENRES', payload: genres.data})
+    } catch (error) {
+        console.error('error in genre GET', error)
     }
+}
+
+// adds a movie to DB
+function* addMovie (action) {
+    let newMovie = action.payload
+    try {
+        yield axios.post(`/api/movie`, newMovie)
+    } catch (error) {
+        console.error('Error adding newMovie:', error, newMovie );
         
+    }
 }
 
 // Create sagaMiddleware
@@ -52,10 +74,8 @@ const genres = (state = [], action) => {
     }
 }
 
-// selected reduc goes here <------------------------
+// Stores the presently selected movie for access by the deatils page
 const selectedMovie = (state = [], action) => {
-    // ACTION TYPES 
-    // 'SELECT_MOVIE'
     switch (action.type) {
         case 'SELECT_MOVIE':
             return action.payload;

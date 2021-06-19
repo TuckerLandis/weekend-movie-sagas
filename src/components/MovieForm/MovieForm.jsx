@@ -3,22 +3,29 @@ import Button from '@material-ui/core/Button';
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import { useState } from 'react';
-import { useDispatch } from 'react-redux';
-
+import { useDispatch, useSelector } from 'react-redux';
+import React, { useEffect } from 'react';
 import InputLabel from '@material-ui/core/InputLabel';
 import FormHelperText from '@material-ui/core/FormHelperText';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import NativeSelect from '@material-ui/core/NativeSelect';
+import {HashRouter as Router, Route, useHistory} from 'react-router-dom';
 
-
+import './movieform.css'
 
 function MovieForm () {
     const dispatch = useDispatch()
+    const history = useHistory()
+    const genres = useSelector(store => store.genres )
     const [title, setTitle] = useState('')
     const [poster, setPoster] = useState('')
     const [description, setDescription] = useState('')
     const [genre, setGenre] = useState('')
+
+    useEffect(() => {
+        dispatch({ type: 'FETCH_GENRES' });
+    }, []);
 
     const handleChangeTitle = (event) => {
         setTitle(event.target.value)
@@ -32,6 +39,9 @@ function MovieForm () {
     const handleChangeGenre = (event) => {
         setGenre(event.target.value)
     }
+    const handleCancel = () => {
+        history.push('/')
+    }
     const addMovie = (event) => {
         event.preventDefault
         dispatch({
@@ -40,7 +50,7 @@ function MovieForm () {
                 title: title,
                 poster: poster,
                 description: description,
-                genre: genre
+                genre_id: genre
             }
         })
         setTitle('')
@@ -49,7 +59,7 @@ function MovieForm () {
         setGenre('')
     }
 
-    return (<div>
+    return (<div className="form-container">
         <form onSubmit={addMovie}>
             <TextField
           id="outlined-multiline-flexible"
@@ -66,8 +76,10 @@ function MovieForm () {
           variant="outlined"
         />
         <div>
-            <TextareaAutosize
-      rowsMax={4}
+            <TextField
+      rows={4}
+      rowsMax={60}
+      multiline
       aria-label="maximum height"
       placeholder="Description..."
       value={description}
@@ -81,17 +93,23 @@ function MovieForm () {
           onChange={handleChangeGenre}
           
         >
-
-            {/* GENRE MAP */}
-          <option aria-label="None" value="" />
-          <option value={'genre1'}>Genre1</option>
-          <option value={'genre2'}>Genre2</option>
-          <option value={'genre3'}>Genre3</option>
+            <option aria-label="None" value="" />
+            {
+                genres.map(
+                    item => {
+                        return (
+                            <option key={item.id} value={item.id}>{item.name}</option>
+                        )
+                    }
+                )
+            }
         </NativeSelect>
-        
       </FormControl>
     <div>
-    <Button variant="outlined" color="primary" type="submit">
+    <Button variant="contained" color="secondary" onClick={handleCancel}>
+         Cancel
+    </Button>
+    <Button variant="contained" color="primary" type="submit">
          Save
     </Button>
     </div>
@@ -103,16 +121,3 @@ function MovieForm () {
 
 export default MovieForm
 
-
-
-// This should show:
-
-// - an input field (for the movie title)
-// - an input field (for the movie poster image url))
-// - a textarea (for the movie description)
-// - a dropdown (for the genres)
-
-// The Add Movie page should have the buttons:
-
-// - `Cancel` button, which should bring the user to the Home/List Page
-// - `Save` button, which should save these inputs in the database and bring the user to the Home/List Page (which now has the new movie)
