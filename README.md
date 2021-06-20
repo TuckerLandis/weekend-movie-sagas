@@ -27,29 +27,36 @@ an interactive application to add and review movies and their related info and g
 ## React Components
 
 * App 
+
 Contains theme and provider from Material UI
 Contains Router and routes to details page and addition form
 
 * Header 
+
 Simple header component, with an image I made for this assignment.
 
 * Nav 
+
 Simple navigation component that can be added to as I add additional views, current brings the user to the MovieForm view
 
 * MovieList
+
 Maps over a the movies reducer and returns MovieCard components
 
-*MovieCard
+* MovieCard
+
 Displays title, poster for each movie. Will likely add genre here to provide more information on quick scan of the list.
 Upon clicking a MovieCard, (currently anywhere on the card), the user is brought to the details page for the specific movie.
 
 * Details
+
 Details view, navigated to upon clicking on a card
 On load, 2 queries are sent to populate movie and genre data based off of the ID in the url Params
 Genre list is a simple map over the response of the latter
 (next: more style, add 'edit button to link to edit view')
 
 * MovieForm
+
 Conatains input form for adding a movie. All inputs are form validated, and on submit, a movie is posted to the database, rendering it on the list view immediately
 
 ### Next 
