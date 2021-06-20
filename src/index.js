@@ -45,8 +45,12 @@ function* fetchGenres () {
 // adds a movie to DB, this information is passed over dispatch from the movie form
 // component on submit. nothing special with variable declaration here, just for readibility, 
 // newMovie is an object structured thusly:
-
-
+//  {
+//     title: title string,
+//     poster: poster URL,
+//     description: description string,
+//     genre_id: genre int
+// }
 function* addMovie (action) {
     let newMovie = action.payload // 
     try {
@@ -105,8 +109,7 @@ const selectedMovie = (state = [], action) => {
             return state;
     }
 }
-// holds the currently selected movie's genre's to display as mapped line items
-// 
+// holds the currently selected movie's genre's to display as mapped line items in moviecard
 const selectedGenres = (state = [], action) => {
     switch (action.type) {
         case 'SET_SELECTED_GENRE':

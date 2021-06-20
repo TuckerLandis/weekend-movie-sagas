@@ -38,9 +38,11 @@ function MovieForm () {
     const handleChangeGenre = (event) => {
         setGenre(event.target.value)
     }
+    // on cancel button click, send user to movies view
     const handleCancel = () => {
         history.push('/')
     }
+    // sends dispatch to addMovie generator function in index, which posts a movie to DB
     const addMovie = (event) => {
         event.preventDefault
         dispatch({
@@ -81,16 +83,16 @@ function MovieForm () {
           onChange={handleChangePoster}
           variant="outlined"
         />
-
-        <FormControl variant="outlined">
+         {/* // drop down select of all genres, based on DB and with an associated ID */}
+         <div className="select-div">
+         <FormControl variant="outlined">
         <InputLabel htmlFor="Set-Genre">Genre</InputLabel>
         <NativeSelect
         required
           value={genre}
           onChange={handleChangeGenre}
-          
         >
-            <option value="" />
+            <option value='' />
             {
                 // loops over the response from genre.router and displays all genres
                 genres.map(
@@ -103,6 +105,9 @@ function MovieForm () {
             }
         </NativeSelect>
       </FormControl>
+     </div>
+
+        
 
         {/* // description, max 100 rows, no char limit */}
         <div className= "desc-div">
@@ -118,10 +123,7 @@ function MovieForm () {
     />
     </div>
     
-    {/* // drop down select of all genres, based on DB and with an associated ID */}
-        <div className="select-div">
    
-      </div>
       {/* brings the user back to movielist */}
     <div className="button-div">
     <Button className="form-button" variant="contained" color="primary" onClick={handleCancel}>
