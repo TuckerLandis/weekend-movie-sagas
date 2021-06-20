@@ -3,6 +3,7 @@
     margin-bottom: 3em;
     background-color: #424242;
     border: 5px solid black;
+    border-radius: 10px;
 }
 
 /* primary: {
