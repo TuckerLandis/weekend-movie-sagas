@@ -88,6 +88,7 @@ function MovieForm () {
       rows={4}
       rowsMax={100}
       multiline
+      style = {{width: 420}}
       placeholder="Description..."
       value={description}
       onChange={handleChangeDescription}

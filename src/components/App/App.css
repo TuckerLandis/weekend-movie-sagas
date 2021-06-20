@@ -18,3 +18,12 @@
 .form-button{
   display: block;
 }
+
+a:visited { 
+  text-decoration: none; 
+  color: rgb(255, 123, 0); 
+ }
+
+ .nav{
+   margin-top: 1em;
+ }
