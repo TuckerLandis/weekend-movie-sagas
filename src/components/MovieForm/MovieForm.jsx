@@ -6,9 +6,7 @@ import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import React, { useEffect } from 'react';
 import InputLabel from '@material-ui/core/InputLabel';
-import FormHelperText from '@material-ui/core/FormHelperText';
 import FormControl from '@material-ui/core/FormControl';
-import Select from '@material-ui/core/Select';
 import NativeSelect from '@material-ui/core/NativeSelect';
 import {HashRouter as Router, Route, useHistory} from 'react-router-dom';
 
@@ -27,7 +25,7 @@ function MovieForm () {
         dispatch({ type: 'FETCH_GENRES' });
     }, []);
 
-    // handle change functions for inputs`
+    // handle change functions for inputs *
     const handleChangeTitle = (event) => {
         setTitle(event.target.value)
     }
@@ -60,42 +58,56 @@ function MovieForm () {
         setGenre('')
     }
 
-    return (<div className="form-container">
+    return (
+    
+        // required inputs for 
+        // Title
+    <div className="form-container">
         <form onSubmit={addMovie}>
             <TextField
           id="outlined-multiline-flexible"
+          required
           label="Title"
           value={title}
           onChange={handleChangeTitle}
           variant="outlined"
-        />
+        /> 
+        {/* // poster URL | 120 char limit */}
             <TextField
           id="outlined-multiline-flexible"
+          required
           label="Poster"
           value={poster}
           onChange={handleChangePoster}
           variant="outlined"
         />
-        <div>
+        {/* // description, max 100 rows, no char limit */}
+        <div className= "desc-div">
             <TextField
+            required
       rows={4}
-      rowsMax={60}
+      rowsMax={100}
       multiline
-      aria-label="maximum height"
+      style = {{width: 420}}
       placeholder="Description..."
       value={description}
       onChange={handleChangeDescription}
     />
     </div>
-    <FormControl className="">
+    
+    {/* // drop down select of all genres, based on DB and with an associated ID */}
+        <div className="select-div">
+    <FormControl >
         <InputLabel htmlFor="Set-Genre">Genre</InputLabel>
         <NativeSelect
+        required
           value={genre}
           onChange={handleChangeGenre}
           
         >
-            <option aria-label="None" value="" />
+            <option value="" />
             {
+                // loops over the response from genre.router and displays all genres
                 genres.map(
                     item => {
                         return (
@@ -106,10 +118,13 @@ function MovieForm () {
             }
         </NativeSelect>
       </FormControl>
-    <div>
-    <Button variant="contained" color="secondary" onClick={handleCancel}>
+      </div>
+      {/* brings the user back to movielist */}
+    <div className="button-div">
+    <Button className="form-button" variant="contained" color="secondary" onClick={handleCancel}>
          Cancel
     </Button>
+    {/* sends the above 'addMovie' dispatch to index */}
     <Button variant="contained" color="primary" type="submit">
          Save
     </Button>

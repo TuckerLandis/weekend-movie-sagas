@@ -1,0 +1,13 @@
+#details-title {
+    margin: 2em;
+    font-size: 36pt;
+}
+
+.details-desc {
+    margin: 3em;
+}
+
+li{ 
+    list-style: none;
+    text-align: center;
+}

@@ -1,5 +1,24 @@
 .form-container {
     display: flexbox;
-    background-color: lightslategray
+    padding: 1em;
+    background-color: rgb(52, 57, 63)
 }
 
+.form-container, TextField {
+    margin: 1em;
+}
+
+.button-div{
+    margin-top: 3em;
+}
+.button-div, *{
+    
+}
+
+.select-div {
+    margin: 2em;
+}
+
+.desc-div{
+    margin: 3em;
+}

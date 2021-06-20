@@ -1,33 +1,45 @@
 import { useSelector } from "react-redux"
+import Button from '@material-ui/core/Button';
+import {HashRouter as Router, Route, useHistory} from 'react-router-dom';
+import './details.css'
 
 
 function Details () {
     const movie = useSelector(store => store.selectedMovie);
-    const genres = useSelector(store => store.selectedGenres)
+    const genres = useSelector(store => store.selectedGenres);
+    const history = useHistory()
+
+    const handleBack = () => {
+        history.push('/')
+    }
+
     return (
         <div>
-            <h2>{movie.title}</h2>
+            <div className="title-div">
             <Button 
+            variant="contained" 
+            color="primary" 
+            onClick={handleBack}
+            >Back to List
+            </Button>
+            <h1 id="details-title">{movie.title}</h1>
+            <div>
             <img src={movie.poster} alt={movie.title} />
-            <p>{movie.description}</p>
-            <ul>
            {genres.map(item => (
-               <li>{item.name}</li>
+               <p>{item.name}</p>
            ))}
-            </ul>
+            </div>
+            </div>
+            
+            
+            
+            <div className="details-desc">
+            <p>{movie.description}</p>
+            </div>
+            
+            
         </div>
     )
 }
 
 export default Details
-
-
-// ### Details Page
-
-// This should show all details **including ALL genres** for the selected movie. You will need to store this data in redux!
-
-//  > Hint : You can make a GET request for a specific movie. Remember `req.params` and `:id`?
-
-// - TODO: The details page should have a `Back to List` button, which should bring the user to the Home/List Page
-
-// > Base functionality does not require the movie details to load correctly after refresh of the browser.

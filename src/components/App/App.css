@@ -2,14 +2,6 @@
   text-align: center;
 }
 
-
-.App-header {
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
-  color: white;
-}
-
 .App-title {
   font-size: 1.5em;
 }
@@ -26,3 +18,12 @@
 .form-button{
   display: block;
 }
+
+a:visited { 
+  text-decoration: none; 
+  color: rgb(255, 123, 0); 
+ }
+
+ .nav{
+   margin-top: 1em;
+ }
