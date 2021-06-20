@@ -11,7 +11,7 @@ import createSagaMiddleware from 'redux-saga';
 import { takeEvery, put } from 'redux-saga/effects';
 import axios from 'axios';
 
-// Create the rootSaga generator function
+// Watcher Saga for incoming actions from DOM
 function* rootSaga() {
     yield takeEvery('FETCH_MOVIES', fetchAllMovies);
     yield takeEvery('ADD_MOVIE', addMovie)
@@ -20,6 +20,8 @@ function* rootSaga() {
     yield takeEvery('SELECT_MOVIE_ID', selectMovieID)
 }
 
+
+// -----------------SAGAs------------------ //
 function* selectMovieID (action) {
     try {
         const movie = yield axios.get(`/api/movie/select/${action.payload}`);
@@ -30,8 +32,8 @@ function* selectMovieID (action) {
     }
 }
 
+ // get all movies from the DB for rendering cards. This is called on page load of the home page or "list" view
 function* fetchAllMovies() {
-    // get all movies from the DB
     try {
         const movies = yield axios.get('/api/movie');
         console.log('get all:', movies.data);
@@ -41,9 +43,9 @@ function* fetchAllMovies() {
     } 
 }
 
+ //gets all genres from db and sends to reducer -
+ // this is linked to the map in the drop down when selecting genre when adding a movie
 function* fetchGenres () {
-    //gets all genres from db and sends to reducer -
-    // this is linked to the map in the drop down when selecting genre when adding a movie
     try{
         const genres = yield axios.get('/api/genre');
         console.log('genres from DB:', genres);
@@ -71,7 +73,8 @@ function* addMovie (action) {
         
     }
 }
-// selects genres for a specific move upon flipping to details page
+
+// selects genres for a specific movie upon flipping to details page
 function* selectGenres (action) {
     let id = action.payload
     try {
@@ -85,6 +88,9 @@ function* selectGenres (action) {
 
 // Create sagaMiddleware
 const sagaMiddleware = createSagaMiddleware();
+
+
+
 
 // -----------------Reducers------------------- //
 
