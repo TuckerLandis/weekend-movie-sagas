@@ -1,9 +1,9 @@
-import banner from "./prime-theater.jpg"
+import banner from "./prime_theater_cropped.jpg"
 
 function Header () {
     return (
         <div>
-            <img src={banner} width="70%" height="350px"/>
+            <img src={banner} width="30%" />
         </div>
     )
 }
