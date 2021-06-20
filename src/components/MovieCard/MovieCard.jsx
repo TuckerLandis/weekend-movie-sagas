@@ -1,3 +1,4 @@
+import { useDispatch } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
@@ -6,17 +7,22 @@ import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
+import {HashRouter as Router, Route, useHistory} from 'react-router-dom';
 
 
 const useStyles = makeStyles({
   root: {
     maxWidth: 345,
+    padding: 40,
+    margin: 30,
+    
   },
 });
 
 
 function MovieCard ({movie}) {
     const classes = useStyles();
+    const dispatch = useDispatch()
 
     const handleClick = () => {
         console.log('clicked movie:', movie);
@@ -32,9 +38,9 @@ function MovieCard ({movie}) {
     } 
 
     return (
-        <Card className={classes.root}>
-            onClick={handleClick}
-            key={movie.id}
+        <Card className={classes.root} onClick={handleClick}
+        key={movie.id}>
+            
       <CardActionArea>
         <CardMedia
           component="img"
