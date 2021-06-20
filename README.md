@@ -1,4 +1,6 @@
-# Project Name
+# Prime Theater
+
+![Prime Theater](public/images/prime_theater_cropped.jpg)
 
 [Project Instructions](./INSTRUCTIONS.md), this line may be removed once you have updated the README.md
 

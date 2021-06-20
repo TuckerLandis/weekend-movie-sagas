@@ -17,6 +17,17 @@ function* rootSaga() {
     yield takeEvery('ADD_MOVIE', addMovie)
     yield takeEvery('FETCH_GENRES', fetchGenres)
     yield takeEvery('SELECT_GENRES', selectGenres)
+    yield takeEvery('SELECT_MOVIE_ID', selectMovieID)
+}
+
+function* selectMovieID (action) {
+    try {
+        const movie = yield axios.get(`/api/movie/select/${action.payload}`);
+        yield put ({type: 'SELECT_MOVIE', payload: movie.data[0]})
+    } catch (error) {
+        console.log('error selecting', error);
+        
+    }
 }
 
 function* fetchAllMovies() {
@@ -60,7 +71,7 @@ function* addMovie (action) {
         
     }
 }
-
+// selects genres for a specific move upon flipping to details page
 function* selectGenres (action) {
     let id = action.payload
     try {
