@@ -26,6 +26,7 @@ const useStyles = makeStyles({
 function MovieCard ({movie}) {
     const classes = useStyles();
     const dispatch = useDispatch()
+    const history = useHistory()    
 
     const handleClick = () => {
         console.log('clicked movie:', movie);
