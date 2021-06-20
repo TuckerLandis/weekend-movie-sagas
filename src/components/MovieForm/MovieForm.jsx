@@ -27,7 +27,7 @@ function MovieForm () {
         dispatch({ type: 'FETCH_GENRES' });
     }, []);
 
-    // handle change functions for inputs`
+    // handle change functions for inputs *
     const handleChangeTitle = (event) => {
         setTitle(event.target.value)
     }
@@ -60,42 +60,55 @@ function MovieForm () {
         setGenre('')
     }
 
-    return (<div className="form-container">
+    return (
+    
+        // required inputs for 
+        // Title
+    <div className="form-container">
         <form onSubmit={addMovie}>
             <TextField
           id="outlined-multiline-flexible"
+          required
           label="Title"
           value={title}
           onChange={handleChangeTitle}
           variant="outlined"
-        />
+        /> 
+        {/* // poster URL | 120 char limit */}
             <TextField
           id="outlined-multiline-flexible"
+          required
           label="Poster"
           value={poster}
           onChange={handleChangePoster}
           variant="outlined"
         />
+        {/* // description, max 100 rows, no char limit */}
         <div>
             <TextField
+            required
       rows={4}
-      rowsMax={60}
+      rowsMax={100}
       multiline
-      aria-label="maximum height"
       placeholder="Description..."
       value={description}
       onChange={handleChangeDescription}
     />
     </div>
+    
+    {/* // drop down select of all genres, based on DB and with an associated ID */}
+
     <FormControl className="">
         <InputLabel htmlFor="Set-Genre">Genre</InputLabel>
         <NativeSelect
+        required
           value={genre}
           onChange={handleChangeGenre}
           
         >
             <option aria-label="None" value="" />
             {
+                // loops over the response from genre.router and displays all genres
                 genres.map(
                     item => {
                         return (
