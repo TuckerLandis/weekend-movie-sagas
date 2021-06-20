@@ -5,15 +5,15 @@
 
 ## Setup
 
-'npm install'
+> 'npm install'
 
-setup pg databases according to 'database.sql file', all three tables are needed for full functionality
+> setup pg database according to 'database.sql file', all three tables are needed for full functionality
 
 then
 
-'npm run server'
+> 'npm run server'
 
-'npm run client'
+> 'npm run client'
 
 ## Description
 
