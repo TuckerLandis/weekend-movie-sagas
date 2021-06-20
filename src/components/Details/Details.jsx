@@ -1,15 +1,19 @@
 import { useSelector } from "react-redux"
 
+
 function Details () {
     const movie = useSelector(store => store.selectedMovie);
-
+    const genres = useSelector(store => store.selectedGenres)
     return (
         <div>
             <h2>{movie.title}</h2>
+            <Button 
             <img src={movie.poster} alt={movie.title} />
             <p>{movie.description}</p>
             <ul>
-           {/* genres here */}
+           {genres.map(item => (
+               <li>{item.name}</li>
+           ))}
             </ul>
         </div>
     )

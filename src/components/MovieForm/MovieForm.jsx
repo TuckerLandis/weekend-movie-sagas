@@ -27,6 +27,7 @@ function MovieForm () {
         dispatch({ type: 'FETCH_GENRES' });
     }, []);
 
+    // handle change functions for inputs`
     const handleChangeTitle = (event) => {
         setTitle(event.target.value)
     }
