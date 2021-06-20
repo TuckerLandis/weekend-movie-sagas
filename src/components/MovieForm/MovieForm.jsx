@@ -6,9 +6,7 @@ import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import React, { useEffect } from 'react';
 import InputLabel from '@material-ui/core/InputLabel';
-import FormHelperText from '@material-ui/core/FormHelperText';
 import FormControl from '@material-ui/core/FormControl';
-import Select from '@material-ui/core/Select';
 import NativeSelect from '@material-ui/core/NativeSelect';
 import {HashRouter as Router, Route, useHistory} from 'react-router-dom';
 
@@ -84,7 +82,7 @@ function MovieForm () {
           variant="outlined"
         />
         {/* // description, max 100 rows, no char limit */}
-        <div>
+        <div className= "desc-div">
             <TextField
             required
       rows={4}
@@ -97,8 +95,8 @@ function MovieForm () {
     </div>
     
     {/* // drop down select of all genres, based on DB and with an associated ID */}
-
-    <FormControl className="">
+        <div className="select-div">
+    <FormControl >
         <InputLabel htmlFor="Set-Genre">Genre</InputLabel>
         <NativeSelect
         required
@@ -106,7 +104,7 @@ function MovieForm () {
           onChange={handleChangeGenre}
           
         >
-            <option aria-label="None" value="" />
+            <option value="" />
             {
                 // loops over the response from genre.router and displays all genres
                 genres.map(
@@ -119,10 +117,13 @@ function MovieForm () {
             }
         </NativeSelect>
       </FormControl>
-    <div>
-    <Button variant="contained" color="secondary" onClick={handleCancel}>
+      </div>
+      {/* brings the user back to movielist */}
+    <div className="button-div">
+    <Button className="form-button" variant="contained" color="secondary" onClick={handleCancel}>
          Cancel
     </Button>
+    {/* sends the above 'addMovie' dispatch to index */}
     <Button variant="contained" color="primary" type="submit">
          Save
     </Button>

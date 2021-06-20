@@ -12,7 +12,7 @@ import {HashRouter as Router, Route, useHistory} from 'react-router-dom';
 
 const useStyles = makeStyles({
   root: {
-    maxWidth: 345,
+    width: 345,
     padding: 40,
     margin: 30,
     
@@ -64,8 +64,8 @@ function MovieCard ({movie}) {
         </CardContent>
       </CardActionArea>
       <CardActions>
-        <Button size="small" color="" variant >
-          Edit - coming soon..
+        <Button size="small" color="" variant="contained" >
+          Details
         </Button>
         
       </CardActions>

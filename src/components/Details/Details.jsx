@@ -1,6 +1,7 @@
 import { useSelector } from "react-redux"
 import Button from '@material-ui/core/Button';
 import {HashRouter as Router, Route, useHistory} from 'react-router-dom';
+import './details.css'
 
 
 function Details () {
@@ -14,15 +15,22 @@ function Details () {
 
     return (
         <div>
-            <h2>{movie.title}</h2>
+            <div className="title-div">
             <Button 
             variant="contained" 
             color="primary" 
             onClick={handleBack}
             >Back to List
             </Button>
+            <h1 id="details-title">{movie.title}</h1>
+            </div>
+            
+            
             <img src={movie.poster} alt={movie.title} />
+            <div className="details-desc">
             <p>{movie.description}</p>
+            </div>
+            
             <ul>
            {genres.map(item => (
                <li>{item.name}</li>
