@@ -81,23 +81,8 @@ function MovieForm () {
           onChange={handleChangePoster}
           variant="outlined"
         />
-        {/* // description, max 100 rows, no char limit */}
-        <div className= "desc-div">
-            <TextField
-            required
-      rows={4}
-      rowsMax={100}
-      multiline
-      style = {{width: 420}}
-      placeholder="Description..."
-      value={description}
-      onChange={handleChangeDescription}
-    />
-    </div>
-    
-    {/* // drop down select of all genres, based on DB and with an associated ID */}
-        <div className="select-div">
-    <FormControl >
+
+        <FormControl variant="outlined">
         <InputLabel htmlFor="Set-Genre">Genre</InputLabel>
         <NativeSelect
         required
@@ -118,13 +103,33 @@ function MovieForm () {
             }
         </NativeSelect>
       </FormControl>
+
+        {/* // description, max 100 rows, no char limit */}
+        <div className= "desc-div">
+            <TextField
+            required
+      rows={4}
+      rowsMax={100}
+      multiline
+      style = {{width: 420}}
+      placeholder="Description..."
+      value={description}
+      onChange={handleChangeDescription}
+    />
+    </div>
+    
+    {/* // drop down select of all genres, based on DB and with an associated ID */}
+        <div className="select-div">
+   
       </div>
       {/* brings the user back to movielist */}
     <div className="button-div">
-    <Button className="form-button" variant="contained" color="secondary" onClick={handleCancel}>
+    <Button className="form-button" variant="contained" color="primary" onClick={handleCancel}>
          Cancel
     </Button>
+    </div>
     {/* sends the above 'addMovie' dispatch to index */}
+    <div className="button-div">
     <Button variant="contained" color="primary" type="submit">
          Save
     </Button>

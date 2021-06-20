@@ -72,7 +72,7 @@ function MovieCard ({movie}) {
         </CardContent>
       </CardActionArea>
       <CardActions>
-        <Button color="orange" variant="contained" >
+        <Button color="primary" variant="contained" >
           Details
         </Button>
         
