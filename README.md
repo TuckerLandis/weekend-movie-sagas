@@ -57,7 +57,7 @@ Genre list is a simple map over the response of the latter
 
 * MovieForm
 
-Conatains input form for adding a movie. All inputs are form validated, and on submit, a movie is posted to the database, rendering it on the list view immediately
+Contains input form for adding a movie. All inputs are form validated, and on submit, a movie is posted to the database, rendering it on the list view immediately
 
 ### Next 
 I plan to add an edit page to enable edit of a movie upon pressing a button on it's card or in the detail view. As part of this, addition of genres will be implemented, as part of that, a checkbox mechanism for ability to select multiple genres will be added. I plan to continue to clean up this repo and continue to comment where appropriate. 
