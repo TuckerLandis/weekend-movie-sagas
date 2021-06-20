@@ -17,6 +17,9 @@ const useStyles = makeStyles({
     margin: 30,
     
   },
+  media: {
+      height: 300,
+  }
 });
 
 
@@ -43,11 +46,12 @@ function MovieCard ({movie}) {
             
       <CardActionArea>
         <CardMedia
+        className={classes.media}
           component="img"
           alt={movie.title}
           height="140"
           image={movie.poster}
-          title="Contemplative Reptile"
+          title={movie.title}
         />
         <CardContent>
           <Typography gutterBottom variant="h5" component="h2">
@@ -59,12 +63,10 @@ function MovieCard ({movie}) {
         </CardContent>
       </CardActionArea>
       <CardActions>
-        <Button size="small" color="primary">
-          Share
+        <Button size="small" color="" variant >
+          Edit - coming soon..
         </Button>
-        <Button size="small" color="primary">
-          Learn More
-        </Button>
+        
       </CardActions>
     </Card>
   );

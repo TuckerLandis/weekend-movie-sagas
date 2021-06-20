@@ -7,6 +7,7 @@ import Nav from '../Nav/Nav'
 import { CssBaseline } from '@material-ui/core';
 
 import { ThemeProvider, createMuiTheme } from '@material-ui/core/styles';
+import Header from '../Header/Header';
 const theme = createMuiTheme({
   palette: {
     type: 'dark',
@@ -30,7 +31,7 @@ function App() {
     <ThemeProvider theme={theme} >
       <CssBaseline /> 
     <div className="App">
-      <h1>The Movies Saga!</h1>
+      <Header />
       
       <Router>      
       <Nav />  
