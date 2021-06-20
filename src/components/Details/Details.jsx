@@ -35,7 +35,6 @@ function Details () {
         history.push('/')
     }
 
-    console.log(movie);
     return (
         <div>
             <div className="title-div">
