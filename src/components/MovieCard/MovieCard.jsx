@@ -7,16 +7,16 @@ import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
-import shadows from '@material-ui/system'
 import {HashRouter as Router, Route, useHistory} from 'react-router-dom';
-import { orange } from '@material-ui/core/colors';
+
+import './movie-card.css'
 
 
 const useStyles = makeStyles({
   root: {
+    height: 550,
     width: 345,
     padding: 40,
-    margin: 30,
     
   },
   media: {
@@ -45,7 +45,8 @@ function MovieCard ({movie}) {
     } 
 
     return (
-        <Card 
+        <div class="movie-card" >
+ <Card 
         className={classes.root} 
         onClick={handleClick}
         key={movie.id}
@@ -63,6 +64,7 @@ function MovieCard ({movie}) {
         <CardContent>
           <Typography gutterBottom variant="h5" component="h2">
             {movie.title}
+
           </Typography>
           {/* <Typography variant="body2" color="textSecondary" component="p">
            genres
@@ -76,6 +78,8 @@ function MovieCard ({movie}) {
         
       </CardActions>
     </Card>
+        </div>
+       
   );
 }
     
