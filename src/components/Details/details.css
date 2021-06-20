@@ -6,3 +6,8 @@
 .details-desc {
     margin: 3em;
 }
+
+li{ 
+    list-style: none;
+    text-align: center;
+}

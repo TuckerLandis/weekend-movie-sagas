@@ -7,7 +7,9 @@ import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
+import shadows from '@material-ui/system'
 import {HashRouter as Router, Route, useHistory} from 'react-router-dom';
+import { orange } from '@material-ui/core/colors';
 
 
 const useStyles = makeStyles({
@@ -18,9 +20,10 @@ const useStyles = makeStyles({
     
   },
   media: {
-      height: 300,
+      height: 325,
   }
 });
+
 
 
 function MovieCard ({movie}) {
@@ -42,8 +45,11 @@ function MovieCard ({movie}) {
     } 
 
     return (
-        <Card className={classes.root} onClick={handleClick}
-        key={movie.id}>
+        <Card 
+        className={classes.root} 
+        onClick={handleClick}
+        key={movie.id}
+        >
             
       <CardActionArea>
         <CardMedia
@@ -64,7 +70,7 @@ function MovieCard ({movie}) {
         </CardContent>
       </CardActionArea>
       <CardActions>
-        <Button size="small" color="" variant="contained" >
+        <Button color="orange" variant="contained" >
           Details
         </Button>
         

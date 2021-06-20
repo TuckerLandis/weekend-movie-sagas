@@ -23,19 +23,21 @@ function Details () {
             >Back to List
             </Button>
             <h1 id="details-title">{movie.title}</h1>
+            <div>
+            <img src={movie.poster} alt={movie.title} />
+           {genres.map(item => (
+               <p>{item.name}</p>
+           ))}
+            </div>
             </div>
             
             
-            <img src={movie.poster} alt={movie.title} />
+            
             <div className="details-desc">
             <p>{movie.description}</p>
             </div>
             
-            <ul>
-           {genres.map(item => (
-               <li>{item.name}</li>
-           ))}
-            </ul>
+            
         </div>
     )
 }
