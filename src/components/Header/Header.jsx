@@ -4,7 +4,7 @@ import './header.css'
 function Header () {
     return (
         <div>
-            <img src={banner} width="30%" className="header-img"/>
+            <img src={banner} width="45%" className="header-img"/>
         </div>
     )
 }

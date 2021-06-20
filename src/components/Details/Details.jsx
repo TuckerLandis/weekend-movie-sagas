@@ -36,27 +36,29 @@ function Details () {
     }
 
     return (
-        <div>
+        <div className="readout">
             <div className="title-div">
+            
+            <h1 id="details-title">{movie.title}</h1>
+
+            <div >
+            <img src={movie.poster} alt={movie.title} />
+           {genres.map(item => (
+               <p key={item.id}>{item.name}</p>
+           ))}
+            </div>
+            <div className="details-desc">
+            <p>{movie.description}</p>
+            </div>
+            </div>
+            
+            
             <Button 
             variant="contained" 
             color="primary" 
             onClick={handleBack}
             >Back to List
             </Button>
-            <h1 id="details-title">{movie.title}</h1>
-            <div>
-            <img src={movie.poster} alt={movie.title} />
-           {genres.map(item => (
-               <p key={item.id}>{item.name}</p>
-           ))}
-            </div>
-            </div>
-            
-            <div className="details-desc">
-            <p>{movie.description}</p>
-            </div>
-            
             
         </div>
     )

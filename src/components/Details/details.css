@@ -4,10 +4,19 @@
 }
 
 .details-desc {
-    margin: 3em;
+    text-align: center;
+    margin-left: 10em;
+    margin-right: 10em;
+    border: 2px dotted yellow;
+    margin-bottom :10em;
 }
 
 li{ 
     list-style: none;
     text-align: center;
+}
+
+.readout{
+    display: flexbox;
+    margin-bottom: 10em;
 }
