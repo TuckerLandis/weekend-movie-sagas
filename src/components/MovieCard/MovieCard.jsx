@@ -33,19 +33,12 @@ function MovieCard ({movie}) {
 
     const handleClick = () => {
         console.log('clicked movie:', movie);
-        dispatch({
-            type: 'SELECT_MOVIE',
-            payload: movie
-        })
-        dispatch({
-            type: 'SELECT_GENRES',
-            payload: movie.id
-        })
-        history.push('/details')
+        
+        history.push(`/details/${movie.id}`)
     } 
 
     return (
-        <div class="movie-card" >
+        <div className="movie-card" >
  <Card 
         className={classes.root} 
         onClick={handleClick}

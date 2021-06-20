@@ -17,6 +17,23 @@ router.get('/', (req, res) => {
 
 });
 
+// gets selected movie when flipping to details page for data persistance
+router.get('/select/:id', (req, res) => {
+  console.log('got to select');
+  
+
+  const query = `SELECT * FROM movies WHERE "movies".id = $1`;
+  pool.query(query, [req.params.id])
+    .then( result => {
+      res.send(result.rows);
+    })
+    .catch(err => {
+      console.log('ERROR: Select movie', err);
+      res.sendStatus(500)
+    })
+
+});
+
 // adds a new movie, first returns the ID of said movie to use in second query
 router.post('/', (req, res) => {
   console.log(req.body);
